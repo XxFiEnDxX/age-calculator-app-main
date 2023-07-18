@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    font-size: 20px;
+    background-color: #F2F2F2; /* Use a hex code or a named color for better performance */
+    
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    /* max-width: 800px; */
+    /* margin: 0 auto; */
+}
+
+.card{
+    padding: 20px;
+
+    background-color: #FFFFFF;
+    border-radius: 20px 20px 130px 20px;
+
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+/* input */
+.input{
+    margin: 1rem 1rem 0rem 1rem;
+}
+.form{
+    display: flex;
+    color: hsl(0, 1%, 44%);
+}
+
+.form div{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    margin-right: 1rem;
+}
+
+.form label{
+    letter-spacing: 0.17rem;
+    text-transform: uppercase;
+
+    font-weight: 400;
+    font-size: 0.6rem;
+    margin-left: 0.1rem;
+}
+
+.form input{
+    font-weight: 800;
+    font-size: 1.2rem;
+
+    height: 3rem;
+    width: 5.2rem;
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+
+    border: 0.05rem solid hsl(0, 0%, 86%);
+    border-radius: 0.3rem;
+    text-decoration: none;
+}
+
+.error{
+    display: flex;
+}
+
+.error p{
+    width: 7.3rem;
+    margin: 0 1rem 0 0;
+
+    color: hsl(0, 100%, 67%);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 0.62rem;
+}
+
+
+.form .errColor{
+    color: hsl(0, 100%, 67%);
+}
+.form div .errBorder{
+    border-color: hsl(0, 100%, 67%);
+}
+
+
+
+/* button */
+.btn{
+    display: flex;
+
+    align-items: center;
+}
+.btn .vertical-line{
+    width: 27rem;
+    height: 0.08rem;
+    background-color: hsl(0, 0%, 86%);
+}
+.btn button{
+    background-color: hsl(259, 100%, 65%);
+    
+    width: 4rem;
+    height: 4rem;
+    
+    border: 0;
+    border-radius: 50%;
+    position: relative;
+
+}
+
+.btn button:hover{
+    background-color: hsl(0, 0%, 8%);
+}
+
+.btn button svg{
+    width: 2rem;
+}
+
+/* Result */
+.result{
+    margin: 0 0.9rem 2.5rem 1rem;
+}
+.result h1{
+    color: hsl(0, 0%, 8%);
+
+    align-self: center;
+    font-style: italic;
+    font-weight: 800;
+    font-size:4.5rem;
+
+    height: 4rem;
+    margin: 0 0 0.7rem 0;
+    padding: 0 0 1rem 0;
+    
+}
+
+.result h1 span{
+    color: hsl(259, 100%, 65%);
+    font-size: 5rem;
+    letter-spacing: 0.3rem;
+
+    /* height: 0rem; */
+    margin: 0 0.7rem 0 0;
+}
+
+
