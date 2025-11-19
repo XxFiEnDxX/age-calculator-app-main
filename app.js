@@ -8,8 +8,6 @@ const button = document.querySelector(".btn button");
 
 const result = Array.from(document.querySelector(".result").children);
 
-const date = new Date();
-
 var DD = null;
 var MM = null;
 var YY = null;
@@ -109,6 +107,7 @@ button.addEventListener("click",async()=>{
     MM = parseInt(month[1].value);
     YY = parseInt(year[1].value);
 
+    const date = new Date();
     let curDD = date.getDate();
     let curMM = date.getMonth()+1;
     let curYY = date.getFullYear();
@@ -135,34 +134,48 @@ button.addEventListener("click",async()=>{
     }
     
     //Date Out of Range.......
-    if(DD > 31){
-        error[0].textContent = "Must be a valid day";
-        invaildInput(day);
-        validDate = false;
-    }
-    if(MM > 12){
-        error[1].textContent = "Must be a valid month";
-        invaildInput(month);
-        validDate = false;
-    }
-    if(YY > curYY){
+    const enteredDate = new Date(YY, MM - 1, DD);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (enteredDate > today) {
+        error[0].textContent = "";
+        error[1].textContent = "";
         error[2].textContent = "Must be in the past";
+        invaildInput(day);
+        invaildInput(month);
         invaildInput(year);
         validDate = false;
     }
 
     //Not a valid date.....
-    
+    if (!isValidDate(DD, MM, YY)) {
+        error[0].textContent = "Must be a valid date";
+        error[1].textContent = "";
+        error[2].textContent = "";
+        invaildInput(day);
+        invaildInput(month);
+        invaildInput(year);
+        validDate = false;
+    }
     
     console.log(validDate);
 
     if(validDate){
-        const years = curYY - YY;
-        const months = curMM - MM;
-        const days = curDD - DD;
-        
-        // result[1].children[0].textContent = months;
-        // result[2].children[0].textContent = days;
+        let years = curYY - YY;
+        let months = curMM - MM;
+        let days = curDD - DD;
+
+        if (days < 0) {
+            months--;
+            const prevMonth = new Date(curYY, curMM - 1, 0);
+            days += prevMonth.getDate();
+        }
+
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
 
         for (let i = 0; i <= years; i++) {
             result[0].children[0].textContent = i;
@@ -178,6 +191,17 @@ button.addEventListener("click",async()=>{
         }
     }
 })
+
+function isValidDate(d, m, y) {
+    if (isNaN(d) || isNaN(m) || isNaN(y)) {
+        return false;
+    }
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0)) {
+        daysInMonth[1] = 29;
+    }
+    return m >= 1 && m <= 12 && d >= 1 && d <= daysInMonth[m - 1];
+}
 
 async function sleep(){
     return new Promise((resolve) => setTimeout(resolve,5));
